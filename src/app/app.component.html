@@ -19,7 +19,7 @@
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
+    <mat-toolbar class="main-toolbar">
       <button
         type="button"
         aria-label="Toggle sidenav"
@@ -28,7 +28,7 @@
         *ngIf="authService.isAuthenticated()">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>PollApp</span>
+      <span>FIFA 2026 Polls</span>
       <span class="spacer"></span>
       <button mat-button *ngIf="!authService.isAuthenticated()" routerLink="/auth/login">Login</button>
       <button mat-button *ngIf="!authService.isAuthenticated()" routerLink="/auth/register">Register</button>

@@ -1,0 +1,23 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+.main-toolbar {
+  background-color: var(--color-surface);
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.sidenav {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  border-right: 1px solid var(--color-border);
+}
+
+mat-nav-list a {
+  color: var(--color-text) !important;
+}
+
+mat-nav-list a:hover {
+  color: var(--color-primary) !important;
+}
