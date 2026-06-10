@@ -1,0 +1,73 @@
+<div class="create-poll-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Create New Poll</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="pollForm" (ngSubmit)="onSubmit()" class="mt-16">
+        
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Poll Title</mat-label>
+          <input matInput formControlName="title" required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description" rows="3" required></textarea>
+        </mat-form-field>
+
+        <div class="file-upload-container my-16">
+          <label class="file-upload-label" for="pollImage">Upload Poll Image (Optional)</label>
+          <input type="file" id="pollImage" accept="image/*" (change)="onFileSelected($event)" class="file-input">
+          <div *ngIf="imagePreview" class="image-preview mt-8">
+            <img [src]="imagePreview" alt="Poll Image Preview" style="max-width: 100%; max-height: 200px; border-radius: 8px;">
+          </div>
+        </div>
+
+        <!-- Dynamic Options Array -->
+        <div formArrayName="options" class="options-container">
+          <h3>Poll Options</h3>
+          <div *ngFor="let control of options.controls; let i=index" class="option-row">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Option {{ i + 1 }}</mat-label>
+              <input matInput [formControlName]="i" required>
+            </mat-form-field>
+            <button type="button" mat-icon-button color="warn" (click)="removeOption(i)" [disabled]="options.length <= 2">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+          <button type="button" mat-stroked-button (click)="addOption()"><mat-icon>add</mat-icon> Add Option</button>
+        </div>
+
+        <mat-divider class="my-24"></mat-divider>
+
+        <div class="settings-row">
+          <mat-form-field appearance="outline">
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="startPicker" formControlName="startDate" required>
+            <mat-datepicker-toggle matIconSuffix [for]="startPicker"></mat-datepicker-toggle>
+            <mat-datepicker #startPicker></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>End Date</mat-label>
+            <input matInput [matDatepicker]="endPicker" formControlName="endDate" required>
+            <mat-datepicker-toggle matIconSuffix [for]="endPicker"></mat-datepicker-toggle>
+            <mat-datepicker #endPicker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="toggles-row">
+          <mat-checkbox formControlName="enableVoting">Enable Voting</mat-checkbox>
+          <mat-checkbox formControlName="enableComments">Enable Comments</mat-checkbox>
+        </div>
+
+        <button mat-flat-button color="primary" class="full-width mt-24" type="submit" [disabled]="!pollForm.valid || isUploading">
+          <span *ngIf="!isUploading">CREATE POLL</span>
+          <span *ngIf="isUploading">UPLOADING...</span>
+        </button>
+
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

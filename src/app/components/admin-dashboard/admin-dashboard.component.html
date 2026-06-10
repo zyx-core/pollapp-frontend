@@ -1,0 +1,59 @@
+<div class="dashboard-container" *ngIf="stats">
+  <h2>Admin Dashboard</h2>
+  
+  <div class="stats-grid">
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>Total Users</mat-card-title>
+        <mat-icon mat-card-avatar>group</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.totalUsers }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>Total Polls</mat-card-title>
+        <mat-icon mat-card-avatar>poll</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.totalPolls }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>Active Polls</mat-card-title>
+        <mat-icon mat-card-avatar>check_circle</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.activePolls }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>Total Votes</mat-card-title>
+        <mat-icon mat-card-avatar>how_to_vote</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.totalVotes }}</div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-header>
+        <mat-card-title>Total Comments</mat-card-title>
+        <mat-icon mat-card-avatar>comment</mat-icon>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="stat-value">{{ stats.totalComments }}</div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div *ngIf="!stats" class="loading-state">
+  <p>Loading statistics...</p>
+</div>

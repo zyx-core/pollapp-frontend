@@ -1,0 +1,117 @@
+.poll-details-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 16px 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: var(--color-primary);
+  color: white;
+  font-weight: 600;
+  font-size: 12px;
+  border-radius: 16px;
+}
+
+.status-badge.closed {
+  background-color: #666;
+}
+
+.my-24 {
+  margin: 24px 0;
+}
+
+.mt-24 {
+  margin-top: 24px;
+}
+
+.radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.radio-button {
+  padding: 12px;
+  border: 2px solid var(--color-border);
+  border-radius: var(--border-radius);
+  transition: background-color 0.2s;
+}
+
+.radio-button:hover {
+  background-color: #f0f0f0;
+}
+
+/* Comments */
+.comments-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.comment-item {
+  display: flex;
+  gap: 16px;
+  padding: 16px;
+  background-color: white;
+  border: 2px solid var(--color-border);
+}
+
+.comment-avatar {
+  background-color: #eee;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.comment-body {
+  flex: 1;
+}
+
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.comment-date {
+  color: #666;
+  font-size: 12px;
+}
+
+.comment-text {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.no-comments {
+  text-align: center;
+  color: #666;
+  font-style: italic;
+  padding: 24px 0;
+}
+
+.loading-state {
+  text-align: center;
+  padding: 48px;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.mat-mdc-card-image {
+  max-height: 400px;
+  object-fit: cover;
+  border-bottom: 3px solid var(--color-border);
+}

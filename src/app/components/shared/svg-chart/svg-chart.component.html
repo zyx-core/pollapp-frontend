@@ -1,0 +1,15 @@
+<div class="chart-container">
+  <h3 class="chart-title" *ngIf="title">{{ title }}</h3>
+  
+  <div class="bar-chart" *ngIf="type === 'bar'">
+    <div class="chart-row" *ngFor="let item of data; let i = index">
+      <div class="label-container">
+        <span class="item-label">{{ item.label }}</span>
+        <span class="item-value">{{ item.value }} ({{ getPercentage(item.value) }}%)</span>
+      </div>
+      <div class="bar-wrapper">
+        <div class="bar-fill" [style.width.%]="getBarWidth(item.value)" [style.background-color]="colors[i % colors.length]"></div>
+      </div>
+    </div>
+  </div>
+</div>

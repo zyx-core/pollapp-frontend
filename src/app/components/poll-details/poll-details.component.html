@@ -1,0 +1,84 @@
+<div class="poll-details-container" *ngIf="poll">
+  <mat-card class="main-card">
+    <img mat-card-image *ngIf="poll.imageUrl" [src]="'http://localhost:5000' + poll.imageUrl" alt="Poll Image">
+    
+    <mat-card-header>
+      <mat-card-title>{{ poll.title }}</mat-card-title>
+      <mat-card-subtitle>Created by {{ poll.creator?.name }} on {{ poll.startDate | date }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <p class="description">{{ poll.description }}</p>
+
+      <div class="status-badge" [ngClass]="{'closed': poll.status === 'Closed'}">
+        Status: {{ poll.status | uppercase }}
+      </div>
+
+      <mat-divider class="my-24"></mat-divider>
+
+      <!-- Voting Section -->
+      <div *ngIf="poll.votingEnabled && poll.status !== 'Closed' && !hasVoted">
+        <h3>Cast Your Vote</h3>
+        <form [formGroup]="voteForm" (ngSubmit)="onVoteSubmit()">
+          <mat-radio-group formControlName="selectedOptionId" class="radio-group">
+            <mat-radio-button *ngFor="let option of poll.options" [value]="option.id" class="radio-button">
+              {{ option.optionText }}
+            </mat-radio-button>
+          </mat-radio-group>
+          <button mat-flat-button color="primary" type="submit" [disabled]="!voteForm.valid" class="mt-16">SUBMIT VOTE</button>
+        </form>
+      </div>
+
+      <!-- Results Section -->
+      <div *ngIf="(!poll.votingEnabled || poll.status === 'Closed' || hasVoted) && poll.resultsPublished">
+        <h3>Poll Results</h3>
+        <app-svg-chart [data]="chartData" type="bar"></app-svg-chart>
+      </div>
+      
+      <div *ngIf="(!poll.votingEnabled || poll.status === 'Closed' || hasVoted) && !poll.resultsPublished">
+        <h3>Results are hidden</h3>
+        <p>The creator of this poll has chosen not to publish the results yet.</p>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Comments Section -->
+  <mat-card class="comments-card mt-24" *ngIf="poll.commentsEnabled">
+    <mat-card-header>
+      <mat-card-title>Comments ({{ comments.length }})</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      
+      <form [formGroup]="commentForm" (ngSubmit)="onCommentSubmit()" class="comment-form mt-16">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Add a comment</mat-label>
+          <textarea matInput formControlName="commentText" rows="3" required></textarea>
+        </mat-form-field>
+        <button mat-flat-button color="primary" type="submit" [disabled]="!commentForm.valid">POST COMMENT</button>
+      </form>
+
+      <mat-divider class="my-24"></mat-divider>
+
+      <div class="comments-list">
+        <div class="comment-item" *ngFor="let comment of comments">
+          <div class="comment-avatar">
+            <mat-icon>person</mat-icon>
+          </div>
+          <div class="comment-body">
+            <div class="comment-header">
+              <strong>{{ comment.user?.name }}</strong>
+              <span class="comment-date">{{ comment.createdAt | date:'short' }}</span>
+            </div>
+            <p class="comment-text">{{ comment.commentText }}</p>
+          </div>
+        </div>
+        <p *ngIf="comments.length === 0" class="no-comments">No comments yet. Be the first to share your thoughts!</p>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+<div *ngIf="!poll" class="loading-state">
+  <p>Loading poll details...</p>
+</div>

@@ -1,0 +1,43 @@
+.create-poll-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.options-container {
+  background-color: #f9f9f9;
+  padding: 16px;
+  border: 2px dashed var(--color-border);
+  margin-bottom: 24px;
+}
+
+.option-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.settings-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.toggles-row {
+  display: flex;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.my-24 {
+  margin: 24px 0;
+}
+
+.mt-24 {
+  margin-top: 24px;
+}
+
+.mt-16 {
+  margin-top: 16px;
+}

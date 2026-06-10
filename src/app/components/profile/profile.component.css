@@ -1,0 +1,48 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 500px;
+}
+
+.profile-avatar {
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.my-16 {
+  margin: 16px 0;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 16px;
+}
+
+.role-badge {
+  background-color: #eee;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.role-badge.admin {
+  background-color: var(--color-primary);
+  color: white;
+}

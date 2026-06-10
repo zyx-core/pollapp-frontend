@@ -1,0 +1,76 @@
+.feed-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.feed-header h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.feed-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.polls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  margin-bottom: 24px;
+}
+
+.poll-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.poll-avatar {
+  background-color: var(--color-primary);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.poll-stats {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  font-weight: 600;
+}
+
+.poll-stats span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+mat-card-actions {
+  margin-top: auto;
+  padding: 16px;
+}
+
+.mat-mdc-card-image {
+  border-bottom: 3px solid var(--color-border);
+  height: 200px;
+  object-fit: cover;
+}
+
+.poll-card mat-card-content p {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-top: 16px;
+}

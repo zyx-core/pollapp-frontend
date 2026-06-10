@@ -1,0 +1,50 @@
+<div class="feed-header">
+  <h2>Active Polls</h2>
+  <div class="feed-controls">
+    <mat-form-field appearance="outline">
+      <mat-label>Search</mat-label>
+      <input matInput [(ngModel)]="searchQuery" (ngModelChange)="onSearchChange()">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    
+    <mat-form-field appearance="outline">
+      <mat-label>Sort By</mat-label>
+      <mat-select [(ngModel)]="sortOption" (selectionChange)="onSearchChange()">
+        <mat-option value="newest">Newest</mat-option>
+        <mat-option value="popular">Most Popular</mat-option>
+        <mat-option value="oldest">Oldest</mat-option>
+      </mat-select>
+    </mat-form-field>
+    
+    <mat-paginator 
+      [length]="totalLength"
+      [pageSize]="pageSize"
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      (page)="onPageChange($event)">
+    </mat-paginator>
+  </div>
+</div>
+
+<div class="polls-grid">
+  <mat-card *ngFor="let poll of polls" class="poll-card">
+    <img mat-card-image *ngIf="poll.imageUrl" [src]="'http://localhost:5000' + poll.imageUrl" alt="Poll Image">
+    <mat-card-header>
+      <div mat-card-avatar class="poll-avatar">
+        <mat-icon>account_circle</mat-icon>
+      </div>
+      <mat-card-title>{{ poll.title }}</mat-card-title>
+      <mat-card-subtitle>By {{ poll.creator?.name }} &bull; {{ poll.status }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ poll.description }}</p>
+      <div class="poll-stats">
+        <span><mat-icon>how_to_vote</mat-icon> {{ poll.totalVotes }} Votes</span>
+        <span><mat-icon>comment</mat-icon> {{ poll.totalComments }} Comments</span>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" [routerLink]="['/polls', poll.id]">VIEW POLL</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
