@@ -16,22 +16,21 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo 'Installing npm packages...'
-                // Use 'bat' instead of 'sh' if Jenkins is running directly on Windows
-                sh 'npm ci || npm install'
+                bat 'npm ci || npm install'
             }
         }
 
         stage('Build') {
             steps {
                 echo 'Building Angular application...'
-                sh 'npm run build --configuration=production'
+                bat 'npm run build --configuration=production'
             }
         }
 
         stage('Docker Build') {
             steps {
                 echo 'Building Docker Image...'
-                sh "docker build -t ${env.DOCKER_IMAGE}:${env.DOCKER_TAG} -t ${env.DOCKER_IMAGE}:latest ."
+                bat "docker build -t ${env.DOCKER_IMAGE}:${env.DOCKER_TAG} -t ${env.DOCKER_IMAGE}:latest ."
             }
         }
 
